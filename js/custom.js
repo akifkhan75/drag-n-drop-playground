@@ -1,5 +1,4 @@
 $(document).ready(function() {
-    // Initialize Fabric.js canvas
     const canvas = new fabric.Canvas('canvas', {
         selection: true,
         selectionColor: 'rgba(76, 175, 80, 0.3)',
@@ -7,19 +6,15 @@ $(document).ready(function() {
         selectionLineWidth: 2
     });
     
-    // Set canvas background to white explicitly
     canvas.setBackgroundColor('white', canvas.renderAll.bind(canvas));
     
-    // Track selected object
     let selectedObject = null;
     
-    // Setup toolbar item click handlers
     $('.toolbar-item').on('click', function() {
         const type = $(this).data('type');
         addObjectToCanvas(type);
     });
     
-    // Function to add objects to canvas
     function addObjectToCanvas(type) {
         let fabricObject;
         const defaultProps = {
@@ -48,7 +43,6 @@ $(document).ready(function() {
                 break;
                 
             case 'image':
-                // Using placeholder image by default
                 fabric.Image.fromURL('https://via.placeholder.com/150', function(img) {
                     img.set({
                         ...defaultProps,
@@ -97,7 +91,6 @@ $(document).ready(function() {
         }
     }
     
-    // Update properties panel when selection changes
     canvas.on('selection:created', function(e) {
         selectedObject = e.selected[0];
         updatePropertiesPanel(selectedObject);
@@ -113,7 +106,6 @@ $(document).ready(function() {
         updatePropertiesPanel(null);
     });
     
-    // Function to update the properties panel
     function updatePropertiesPanel(obj) {
         const $panel = $('#properties-form');
         
@@ -124,7 +116,6 @@ $(document).ready(function() {
         
         let panelHTML = '';
         
-        // Common properties for all objects
         panelHTML += `
             <div class="property-group">
                 <label for="obj-left">Position X</label>
@@ -145,7 +136,6 @@ $(document).ready(function() {
             </div>
         `;
         
-        // Type-specific properties
         if (obj.type === 'text' || obj.type === 'i-text') {
             panelHTML += `
                 <div class="property-group">
@@ -246,7 +236,6 @@ $(document).ready(function() {
         
         $panel.html(panelHTML);
         
-        // Set up event listeners for property changes
         $('#obj-left, #obj-top').on('change', function() {
             obj.set({
                 left: parseInt($('#obj-left').val()),
@@ -387,7 +376,6 @@ $(document).ready(function() {
         }
     }
     
-    // Action buttons
     $('#save-btn').on('click', function() {
         const canvasData = JSON.stringify(canvas);
         localStorage.setItem('canvasState', canvasData);
@@ -417,17 +405,6 @@ $(document).ready(function() {
         const activeObject = canvas.getActiveObject();
         if (activeObject) {
             canvas.remove(activeObject);
-        }
-    });
-    
-    // Keyboard shortcuts
-    $(document).on('keydown', function(e) {
-        // Delete key
-        if (e.keyCode === 46) { // 46 is delete key
-            const activeObject = canvas.getActiveObject();
-            if (activeObject) {
-                canvas.remove(activeObject);
-            }
         }
     });
 });
