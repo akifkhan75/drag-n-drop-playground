@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drag-and-Drop Playground with Fabric.js</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"></script>
+
+</head>
+<body>
+    <div class="app-container">
+        <!-- Toolbar Section -->
+        <div class="toolbar">
+            <h2>Elements</h2>
+            <div class="toolbar-items">
+                <div class="toolbar-item" data-type="text">
+                    <img src="./images/text-icon.svg" class="icon" alt="">
+                    <span>Text</span>
+                </div>
+                <div class="toolbar-item" data-type="image">
+                    <img src="./images/image-icon.svg" class="icon" alt="">
+                    <span>Image</span>
+                </div>
+                <div class="toolbar-item" data-type="rect">
+                    <img src="./images/square.svg" class="icon" alt="">
+                    <span>Rectangle</span>
+                </div>
+                <div class="toolbar-item" data-type="circle">
+                    <img src="./images/circle-icon.svg" class="icon" alt="">
+                    <span>Circle</span>
+                </div>
+                <div class="toolbar-item" data-type="triangle">
+                    <img src="./images/triangle-icon.svg" class="icon" alt="">
+                    <span>Triangle</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Playground Section -->
+        <div class="playground">
+            <h2>Playground</h2>
+            <div class="canvas-container">
+                <canvas id="canvas" width="800" height="600"></canvas>
+            </div>
+        </div>
+        
+        <!-- Properties Panel -->
+        <div class="properties-panel">
+            <h2>Properties</h2>
+            <div class="properties-form" id="properties-form">
+                <p>Select an element to edit its properties</p>
+            </div>
+            <div class="action-buttons">
+                <button id="save-btn">Save Layout</button>
+                <button id="load-btn">Load Layout</button>
+                <button id="clear-btn">Clear Canvas</button>
+                <button id="delete-btn">Delete Selected</button>
+            </div>
+        </div>
+    </div>
+    
+<script src="js/custom.js"></script>
+</body>
+</html>
